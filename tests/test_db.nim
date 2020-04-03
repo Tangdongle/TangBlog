@@ -14,6 +14,10 @@ import wapphpkg/models
 test "correct welcome":
   withDb:
     createTables(force=true)
+
+    var sc = SiteConfig(baseUrl: "http://0.0.0.0:5000", name: "base")
+    sc.insert()
+
     var page = Page(
       slug: "test",
       title: "test",

@@ -1,3 +1,4 @@
+import os
 import normanpkg/sugar
 
 import unicode, options
@@ -26,3 +27,7 @@ models:
         dbType: "INTEGER",
         fk: Page.id
         .}: Option[int]
+
+    SiteConfig* = object
+      name* {.unique.}: string
+      baseUrl*: string

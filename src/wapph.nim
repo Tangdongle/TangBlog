@@ -7,7 +7,7 @@ import htmlgen
 
 routes:
   get "/":
-    resp h1("Hello World")
+    resp render.render("home")
 
-  get "/post/@id":
-    resp render.render(parseInt(@"id"))
+  get "/post/@slug":
+    resp render.render(@"slug")
