@@ -18,32 +18,8 @@ var baseTpl ="""
     {{/css_links}}
   </head>
   <body>
-    <div class="grid-8">
-      <div class="col-2">
-        <div class="grid-8">
-          <div class="col-2">
-            {{logo}}
-          </div>
-          <div class="col-6">
-            <nav><ul>
-            {{#nav}}
-              <li><a href="http://0.0.0.0:5000/post/{{url}}">{{name}}</a></li>
-            {{/nav}}
-            </ul></nav>
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="grid-5">
-          <div class="col-3">
-            <header><h2>{{title}}</h2></header>
-            <article>{{main_content}}</article>
-            <footer></footer>
-          </div>
-          <div class="col-1"></div>
-        </div>
-      </div>
-    </div>
+    <div id="ROOT"></div>
+    <script src="http://0.0.0.0:5000/compiled/js/page.js"/></script>
   </body>
 </html>
 """
