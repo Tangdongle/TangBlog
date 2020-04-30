@@ -3,7 +3,7 @@ when defined(js):
   import karax/kdom
 
   proc navlinkbar*(links: seq[tuple[slug: cstring, title: cstring]]): VNode =
-    result = buildHtml(tdiv(className="col-6")):
+    result = buildHtml(tdiv(className="col-4 nav")):
       nav:
         ul:
           for link in links:

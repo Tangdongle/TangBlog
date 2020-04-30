@@ -27,4 +27,24 @@ var gid_20655032 = [0];
 var object_id_20790031 = [0];
 var vcomponents_20951026 = [{}];
 var kxi_21072284 = [null];
-var links_21726034 = [[{Field0: "http://0.0.0.0:5000/", Field1: "Home Page"}, {Field0: "http://0.0.0.0:5000/post/Test", Field1: "Test Post"}]];
+function new_aside_21786011() {
+  var result_21786013 = null;
+
+  var F={procname:"asidebar.newAside",prev:framePtr,filename:"asidebar.nim",line:0};
+  framePtr = F;
+    F.line = 17;
+    result_21786013 = {content: null, image: null, title: null, hidden: false};
+    F.line = 18;
+    result_21786013.content = "";
+    F.line = 19;
+    result_21786013.image = "";
+    F.line = 20;
+    result_21786013.title = "";
+    F.line = 21;
+    result_21786013.hidden = true;
+  framePtr = F.prev;
+
+  return result_21786013;
+
+}
+var aside_instance_21786063 = [new_aside_21786011()];
