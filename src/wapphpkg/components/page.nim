@@ -47,7 +47,8 @@ proc render(): VNode =
           article:
             p:
               text state.currentPage.content
-      renderAside(state.currentSlug)
+      if state.loaded:
+        renderAside(state.currentPage.id)
     tdiv(class = "grid-center", id = "footer"):
       footer(class = "col-7"):
         text "Test Footer"

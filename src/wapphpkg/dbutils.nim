@@ -28,6 +28,6 @@ proc asideForPage*(page: Page): JsonNode =
       "content": pid.content
     }
 
-proc asideForPageSlug*(slug: string): JsonNode =
+proc asideForPageId*(id: int): JsonNode =
   withDb:
-    asideForPage(Page.getOne(fmt"slug = '{slug}'"))
+    asideForPage(Page.getOne(id))

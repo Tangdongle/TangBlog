@@ -3640,7 +3640,7 @@ function fetch_aside_22567078(http_status_22567080, response_22567081) {
 
   
 }
-function aside_toggle_action_22567101(slug_22567103) {
+function aside_toggle_action_22567101(id_22567103) {
     function HEX3Aanonymous_22567107() {
       var F={procname:"asideToggleAction.:anonymous",prev:framePtr,filename:"asidebar.nim",line:0};
       framePtr = F;
@@ -3648,7 +3648,7 @@ function aside_toggle_action_22567101(slug_22567103) {
         aside_state_22567077[0].hidden = !(aside_state_22567077[0].hidden);
         if (!(aside_state_22567077[0].loaded)) {
         F.line = 38;
-        ajax_get_21870219(toJSStr(HEX2F_22160264(HEX2F_22160264(makeNimstrLit("/aside"), makeNimstrLit("for_page_slug")), cstrToNimstr(slug_22567103))), [], fetch_aside_22567078, true, kxi_21072284[0]);
+        ajax_get_21870219(toJSStr(HEX2F_22160264(HEX2F_22160264(makeNimstrLit("/aside"), makeNimstrLit("for_page_id")), cstrToNimstr((id_22567103)+""))), [], fetch_aside_22567078, true, kxi_21072284[0]);
         }
         
       framePtr = F.prev;
@@ -3679,7 +3679,7 @@ function text_20715548(s_20715550) {
   return result_20715551;
 
 }
-function render_aside_22567194(slug_22567196) {
+function render_aside_22567194(page_id_22567196) {
     var Tmp1;
     var Tmp2;
 
@@ -3716,7 +3716,7 @@ function render_aside_22567194(slug_22567196) {
     F.line = 48;
     var tmp_22567203 = tree_20715445(106, []);
     F.line = 48;
-    add_event_handler_21635154(tmp_22567203, 0, aside_toggle_action_22567101(slug_22567196), kxi_21072284[0]);
+    add_event_handler_21635154(tmp_22567203, 0, aside_toggle_action_22567101(page_id_22567196), kxi_21072284[0]);
     F.line = 49;
     if (is_hidden_22567198) {
     Tmp2 = "<<";
@@ -3867,25 +3867,28 @@ function render_22600250() {
     
     F.line = 49;
     add_20705072(tmp_22605044, tmp_22605045);
-    F.line = 50;
-    add_20705072(tmp_22605044, render_aside_22567194(state_22591105[0].currentSlug));
-    F.line = 50;
+    if (state_22591105[0].loaded) {
+    F.line = 51;
+    add_20705072(tmp_22605044, render_aside_22567194(state_22591105[0].currentPage.id));
+    }
+    
+    F.line = 51;
     add_20705072(tmp_22605043, tmp_22605044);
-    F.line = 51;
+    F.line = 52;
     var tmp_22605049 = tree_20715445(43, []);
-    F.line = 51;
+    F.line = 52;
     tmp_22605049.class = "grid-center";
-    F.line = 51;
+    F.line = 52;
     tmp_22605049.id = "footer";
-    F.line = 52;
+    F.line = 53;
     var tmp_22605050 = tree_20715445(28, []);
-    F.line = 52;
+    F.line = 53;
     tmp_22605050.class = "col-7";
-    F.line = 53;
+    F.line = 54;
     add_20705072(tmp_22605050, text_20715548(makeNimstrLit("Test Footer")));
-    F.line = 53;
+    F.line = 54;
     add_20705072(tmp_22605049, tmp_22605050);
-    F.line = 53;
+    F.line = 54;
     add_20705072(tmp_22605043, tmp_22605049);
     result_22600252 = tmp_22605043;
   framePtr = F.prev;

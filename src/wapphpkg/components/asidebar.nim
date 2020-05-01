@@ -30,14 +30,14 @@ when defined(js):
     asideState.aside = aside
     asideState.loaded = true
 
-  proc asideToggleAction(slug: cstring): proc() =
+  proc asideToggleAction(id: int): proc() =
     ## When we hit the show/hide button, we want to load content
     result = proc() =
       asideState.hidden = not asideState.hidden
       if not asideState.loaded:
-        ajaxGet("/aside" / "for_page_slug" / $slug, @[], fetchAside)
+        ajaxGet("/aside" / "for_page_id" / $id, @[], fetchAside)
 
-  proc renderAside*(slug: cstring = ""): VNode =
+  proc renderAside*(pageId: int= -1): VNode =
     ## Render a page Aside
     let isHidden = asideState.hidden
     let hiddentext: cstring = if isHidden: "" else: " open"
@@ -45,7 +45,7 @@ when defined(js):
     result = buildHtml(tdiv(class = "col-3" & hiddenText, id = "side")):
       aside(class = "grid-column-noGutter grid-right" & hiddenText):
         tdiv(class = "col"):
-          button(onclick = asideToggleAction(slug)):
+          button(onclick = asideToggleAction(pageId)):
             text if isHidden: HIDDEN else: OPEN
         if not isHidden:
           if not asidestate.loaded:

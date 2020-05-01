@@ -14,8 +14,8 @@ routes:
   get "/post/@slug":
     resp render.render(@"slug")
 
-  get "/aside/for_page_slug/@slug":
-    let aside = asideForPageSlug(@"slug")
+  get "/aside/for_page_id/@id":
+    let aside = asideForPageId(parseInt(@"id"))
     resp $(aside), "application/json"
 
   post "/pages":
