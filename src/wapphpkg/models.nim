@@ -28,17 +28,22 @@ models:
         fk: Page.id
         .}: Option[int]
 
-    PageAside* {.dbtable: "asides".} = object
-      pageId* {.
-        dbType: "INTEGER",
-        fk: Page.id
-        .}: int
-      title*: string
-      content*: string
+  proc getPageById(id: DbValue): Page = withDb(Page.getOne int(id.i))
 
+  type
     Image* {.dbtable: "images".} = object
       name* {.unique.}: string
       filename* {.unique.}: string
+
+    PageAside* {.dbtable: "asides".} = object
+      pageId* {.
+        dbType: "INTEGER",
+        fk: Page,
+        parser: getPageById,
+        formatIt: ?it.id
+        .}: Page
+      title*: string
+      content*: string
 
 
   proc getPageAsideById(id: DbValue): PageAside = withDb(PageAside.getOne int(id.i))

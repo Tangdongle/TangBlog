@@ -26,13 +26,24 @@ withDb:
   )
   sc.insert()
 
-  let page = Page.getOne("slug = 'home'")
+  var testpage = try:
+                   Page.getOne("slug = 'test'")
+                 except KeyError:
+                   var p = Page(
+                    title: "Test Page",
+                    slug: "test",
+                    content: "Test Page!"
+                   )
+                   p.insert()
+                   p
+
+
   try:
-    discard PageAside.getOne(fmt"pageId = {page.id}")
+    discard PageAside.getOne(fmt"pageId = {testpage.id}")
   except KeyError:
     echo "Creating Aside"
     var aside = PageAside(
-      pageId: page.id,
+      pageId: testpage,
       title: "Welcome to the home page",
       content: "Check out these mad images"
     )
@@ -47,7 +58,7 @@ withDb:
     )
     image.insert()
 
-  let fkAside = PageAside.getOne("pageId = '" & $page.id & "'")
+  let fkAside = PageAside.getOne("pageId = '" & $testpage.id & "'")
   let fkImage = Image.getOne("name = 'pylogo.png'")
   try:
     discard PageAsideImage.getOne(fmt"asideid = {fkAside.id} and imageid = {fkImage.id}")

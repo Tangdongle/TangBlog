@@ -3,7 +3,9 @@
 
 import wapphpkg/render
 import jester
-import htmlgen
+import norm
+import htmlgen, json
+import wapphpkg/[dbutils, models]
 
 routes:
   get "/":
@@ -11,3 +13,12 @@ routes:
 
   get "/post/@slug":
     resp render.render(@"slug")
+
+  get "/aside/for_page_slug/@slug":
+    let aside = asideForPageSlug(@"slug")
+    resp $(aside), "application/json"
+
+  post "/pages":
+    withDB:
+      let pages = Page.getAll()
+      resp $(%pages), "application/json"

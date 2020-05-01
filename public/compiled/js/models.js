@@ -23,7 +23,3 @@ if (!Math.trunc) {
   };
 }
 
-var gid_20655032 = [0];
-var object_id_20790031 = [0];
-var vcomponents_20951026 = [{}];
-var kxi_21072284 = [null];

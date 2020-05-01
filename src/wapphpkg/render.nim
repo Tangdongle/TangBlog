@@ -24,23 +24,11 @@ var baseTpl ="""
 </html>
 """
 
-proc buildNavLinks(): JsonNode =
-  ## Build nav URLS
-  result = newJArray()
-  withDb:
-    let pages = Page.getAll()
-    for page in pages:
-      var newObj = newJObject()
-      newObj["url"] = newJString(page.slug)
-      newObj["name"] = newJString(page.title)
-      result.add(newObj)
-
 proc buildCssLinks(): seq[string] =
   ## Build a list of CSS paths to import
 
   for css_file in os.walkFiles(STATIC_DIR / "*.css"):
     let (dir, css_filename, extension) = css_file.splitFile()
-    echo "Adding " & css_filename
     result.add(dir.split("/")[^1] / css_filename & extension)
 
 proc render(page: Page): string =
@@ -48,7 +36,6 @@ proc render(page: Page): string =
   context["title"] = page.title
   context["css_links"] = buildCssLinks()
   context["main_content"] = page.content
-  context["nav"] = buildNavLinks()
 
   result = render(baseTpl, context)
 

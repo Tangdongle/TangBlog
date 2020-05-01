@@ -21,7 +21,7 @@ suite "DBUtilTests":
       )
       page.insert()
       var pageAside = PageAside(
-        pageId: page.id,
+        pageId: page,
         title: "Test Aside",
         content: "Test"
       )
@@ -30,5 +30,5 @@ suite "DBUtilTests":
         let i = newImage(TEST_IMAGE % $i)
         discard newPageAsideImage(pageAside, i)
 
-      for im in pageAside.imagesForPageAside():
-        echo im.id
+      #for im in pageAside.imagesForPageAside():
+      #  echo im.id

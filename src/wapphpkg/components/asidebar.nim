@@ -1,46 +1,64 @@
 when defined(js):
   include karax/prelude
   import karax/kdom
+  import karax/kajax
   import options
+  import models
+  import os
 
   const
     HIDDEN: cstring = "<<"
     OPEN: cstring = ">>"
 
-  type AsideSection = ref object
-    content: cstring
-    image: cstring
-    title: cstring
-    hidden: bool
+  type
+    AsideState = ref object
+      hidden: bool
+      aside: Aside
+      loaded: bool
 
-  proc newAside(): AsideSection =
+  proc newAside(): AsideState =
     new result
-    result.content = ""
-    result.image = ""
-    result.title = ""
     result.hidden = true
+    result.aside = Aside()
+    result.loaded = false
 
-  var asideInstance = newAside()
+  var asideState = newAside()
 
-  proc asideToggleAction(): proc() =
+  proc fetchAside(httpStatus: int, response: cstring) =
+    ## Fetch an Aside object from the database
+    let aside = fromJson[Aside](response)
+    asideState.aside = aside
+    asideState.loaded = true
+
+  proc asideToggleAction(slug: cstring): proc() =
+    ## When we hit the show/hide button, we want to load content
     result = proc() =
-      asideInstance.hidden = not asideInstance.hidden
+      asideState.hidden = not asideState.hidden
+      if not asideState.loaded:
+        ajaxGet("/aside" / "for_page_slug" / $slug, @[], fetchAside)
 
-  proc renderAside*(asideId: int = -1): VNode =
-    let isHidden = asideInstance.hidden
+  proc renderAside*(slug: cstring = ""): VNode =
+    ## Render a page Aside
+    let isHidden = asideState.hidden
     let hiddentext: cstring = if isHidden: "" else: " open"
 
     result = buildHtml(tdiv(class = "col-3" & hiddenText, id = "side")):
       aside(class = "grid-column-noGutter grid-right" & hiddenText):
         tdiv(class = "col"):
-          button(onclick = asideToggleAction()):
+          button(onclick = asideToggleAction(slug)):
             text if isHidden: HIDDEN else: OPEN
         if not isHidden:
-          tdiv(class = "col"):
-            if asideInstance.content.len > 0:
-              tdiv(class = "aside-content"):
-                p:
-                  text asideInstance.content
-            if asideInstance.image.len > 0:
-              img(href = asideInstance.image)
-
+          if not asidestate.loaded:
+            h3:
+              text "Loading"
+          else:
+            h3:
+              text asideState.aside.title
+            tdiv(class = "col"):
+              if asideState.aside.content.len > 0:
+                tdiv(class = "aside-content"):
+                  p:
+                    text asideState.aside.content
+              if asideState.aside.images.len > 0:
+                for im in asideState.aside.images:
+                  img(src = "/" & im.filename, alt = im.name)
