@@ -40,17 +40,26 @@ models:
       name* {.unique.}: string
       filename* {.unique.}: string
 
+
+  proc getPageAsideById(id: DbValue): PageAside = withDb(PageAside.getOne int(id.i))
+  proc getImageById(id: DbValue): Image = withDb(Image.getOne int(id.i))
+
+  type
     PageAsideImage* {.dbTable: "asideimage".} = object
       aside* {.
-        fk: PageAside.id,
+        fk: PageAside,
         dbCol: "asideid",
         dbType: "INTEGER",
-      .}: int
+        parser: getPageAsideById,
+        formatIt: ?it.id
+      .}: PageAside
       image* {.
-        fk: Image.id,
+        fk: Image,
         dbCol: "imageid",
         dbType: "INTEGER",
-      .}: int
+        parser: getImageById,
+        formatIt: ?it.id
+      .}: Image
 
     SiteConfig* = object
       name* {.unique.}: string

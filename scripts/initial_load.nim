@@ -53,7 +53,7 @@ withDb:
     discard PageAsideImage.getOne(fmt"asideid = {fkAside.id} and imageid = {fkImage.id}")
   except KeyError:
     var pai = PageAsideImage(
-      aside: fkAside.id,
-      image: fkImage.id
+      aside: fkAside,
+      image: fkImage
     )
     pai.insert()
