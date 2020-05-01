@@ -28,6 +28,31 @@ models:
         fk: Page.id
         .}: Option[int]
 
+    PageAside* {.dbtable: "asides".} = object
+      pageId* {.
+        dbType: "INTEGER",
+        fk: Page.id
+        .}: int
+      title*: string
+      content*: string
+
+    Image* {.dbtable: "images".} = object
+      name* {.unique.}: string
+      filename* {.unique.}: string
+
+    PageAsideImage* {.dbTable: "asideimage".} = object
+      aside* {.
+        fk: PageAside.id,
+        dbCol: "asideid",
+        dbType: "INTEGER",
+      .}: int
+      image* {.
+        fk: Image.id,
+        dbCol: "imageid",
+        dbType: "INTEGER",
+      .}: int
+
     SiteConfig* = object
       name* {.unique.}: string
       baseUrl*: string
+

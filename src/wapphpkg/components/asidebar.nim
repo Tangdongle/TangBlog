@@ -26,7 +26,7 @@ when defined(js):
     result = proc() =
       asideInstance.hidden = not asideInstance.hidden
 
-  proc renderAside*(): VNode =
+  proc renderAside*(asideId: int = -1): VNode =
     let isHidden = asideInstance.hidden
     let hiddentext: cstring = if isHidden: "" else: " open"
 

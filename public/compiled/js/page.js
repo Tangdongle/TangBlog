@@ -3013,96 +3013,96 @@ function aside_toggle_action_21811064() {
   return result_21811068;
 
 }
-function render_aside_21811097() {
+function render_aside_21811097(aside_id_21811099) {
     var Tmp1;
     var Tmp2;
 
-  var result_21811099 = null;
+  var result_21811100 = null;
 
   var F={procname:"asidebar.renderAside",prev:framePtr,filename:"asidebar.nim",line:0};
   framePtr = F;
     F.line = 30;
-    var is_hidden_21811100 = aside_instance_21811063[0].hidden;
+    var is_hidden_21811101 = aside_instance_21811063[0].hidden;
     F.line = 31;
-    if (is_hidden_21811100) {
+    if (is_hidden_21811101) {
     Tmp1 = [];
     }
     else {
     Tmp1 = makeNimstrLit(" open");
     }
     
-    var hiddentext_21811101 = toJSStr(Tmp1);
+    var hiddentext_21811102 = toJSStr(Tmp1);
     F.line = 33;
     F.line = 33;
-    var tmp_21811102 = tree_20715445(43, []);
+    var tmp_21811103 = tree_20715445(43, []);
     F.line = 33;
-    tmp_21811102.class = ("col-3" + hiddentext_21811101);
+    tmp_21811103.class = ("col-3" + hiddentext_21811102);
     F.line = 33;
-    tmp_21811102.id = "side";
+    tmp_21811103.id = "side";
     F.line = 34;
-    var tmp_21811103 = tree_20715445(20, []);
+    var tmp_21811104 = tree_20715445(20, []);
     F.line = 34;
-    tmp_21811103.class = ("grid-column-noGutter grid-right" + hiddentext_21811101);
+    tmp_21811104.class = ("grid-column-noGutter grid-right" + hiddentext_21811102);
     F.line = 35;
-    var tmp_21811104 = tree_20715445(43, []);
+    var tmp_21811105 = tree_20715445(43, []);
     F.line = 35;
-    tmp_21811104.class = "col";
+    tmp_21811105.class = "col";
     F.line = 36;
-    var tmp_21811105 = tree_20715445(106, []);
+    var tmp_21811106 = tree_20715445(106, []);
     F.line = 36;
-    add_event_handler_21635154(tmp_21811105, 0, aside_toggle_action_21811064(), kxi_21072284[0]);
+    add_event_handler_21635154(tmp_21811106, 0, aside_toggle_action_21811064(), kxi_21072284[0]);
     F.line = 37;
-    if (is_hidden_21811100) {
+    if (is_hidden_21811101) {
     Tmp2 = "<<";
     }
     else {
     Tmp2 = ">>";
     }
     
-    add_20705072(tmp_21811105, text_20715601(Tmp2));
+    add_20705072(tmp_21811106, text_20715601(Tmp2));
+    F.line = 37;
+    add_20705072(tmp_21811105, tmp_21811106);
     F.line = 37;
     add_20705072(tmp_21811104, tmp_21811105);
-    F.line = 37;
-    add_20705072(tmp_21811103, tmp_21811104);
-    if (!(is_hidden_21811100)) {
+    if (!(is_hidden_21811101)) {
     F.line = 39;
-    var tmp_21811106 = tree_20715445(43, []);
+    var tmp_21811107 = tree_20715445(43, []);
     F.line = 39;
-    tmp_21811106.class = "col";
+    tmp_21811107.class = "col";
     if ((0 < (aside_instance_21811063[0].content != null ? aside_instance_21811063[0].content.length : 0))) {
     F.line = 41;
-    var tmp_21811107 = tree_20715445(43, []);
+    var tmp_21811108 = tree_20715445(43, []);
     F.line = 41;
-    tmp_21811107.class = "aside-content";
+    tmp_21811108.class = "aside-content";
     F.line = 42;
-    var tmp_21811108 = tree_20715445(31, []);
+    var tmp_21811109 = tree_20715445(31, []);
     F.line = 43;
-    add_20705072(tmp_21811108, text_20715601(aside_instance_21811063[0].content));
+    add_20705072(tmp_21811109, text_20715601(aside_instance_21811063[0].content));
+    F.line = 43;
+    add_20705072(tmp_21811108, tmp_21811109);
     F.line = 43;
     add_20705072(tmp_21811107, tmp_21811108);
-    F.line = 43;
-    add_20705072(tmp_21811106, tmp_21811107);
     }
     
     if ((0 < (aside_instance_21811063[0].image != null ? aside_instance_21811063[0].image.length : 0))) {
     F.line = 45;
-    var tmp_21811109 = tree_20715445(75, []);
+    var tmp_21811110 = tree_20715445(75, []);
     F.line = 45;
-    set_attr_20655105(tmp_21811109, "href", aside_instance_21811063[0].image);
+    set_attr_20655105(tmp_21811110, "href", aside_instance_21811063[0].image);
     F.line = 45;
-    add_20705072(tmp_21811106, tmp_21811109);
+    add_20705072(tmp_21811107, tmp_21811110);
     }
     
     F.line = 45;
-    add_20705072(tmp_21811103, tmp_21811106);
+    add_20705072(tmp_21811104, tmp_21811107);
     }
     
     F.line = 45;
-    add_20705072(tmp_21811102, tmp_21811103);
-    result_21811099 = tmp_21811102;
+    add_20705072(tmp_21811103, tmp_21811104);
+    result_21811100 = tmp_21811103;
   framePtr = F.prev;
 
-  return result_21811099;
+  return result_21811100;
 
 }
 function render_21826021() {
@@ -3144,7 +3144,7 @@ function render_21826021() {
     F.line = 18;
     add_20705072(tmp_21826025, tmp_21826026);
     F.line = 19;
-    add_20705072(tmp_21826025, render_aside_21811097());
+    add_20705072(tmp_21826025, render_aside_21811097(-1));
     F.line = 19;
     add_20705072(tmp_21826024, tmp_21826025);
     F.line = 20;
